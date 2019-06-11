@@ -23,12 +23,12 @@ while (ctr<=nodenum)
                 nodepoly = [nodepoly,randpoly];
                 nodezinpoly{polynum+ctr} = znum+ctr;
                 %%%%%
-                hold on
-                plot(randlocation(1),randlocation(2),'go');
-                plot(randz(1),randz(2),'r*');
-                drawregion2d(randpoly,[],range);
-                drawplat3d(randz);
-                hold off
+%                 hold on
+%                 plot(randlocation(1),randlocation(2),'go');
+%                 plot(randz(1),randz(2),'r*');
+%                 drawregion2d(randpoly,[],range);
+%                 drawplat3d(randz);
+%                 hold off
                 %%%%%
                 ctr=ctr+1;
             end

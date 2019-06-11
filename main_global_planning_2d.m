@@ -35,7 +35,7 @@ load('startxgoal.mat','nodez','nodepoly','nodezinpoly');
 %% add new nodes to graph
 [nodez,nodezinpoly,nodegrid,edgez]=creategraph(nodez,nodepoly,nodezinpoly,edgez,1,nodeconfig,range);
 [noderoute,polyroute] = shortestpath(nodez,nodezinpoly,nodegrid,1,2);
-%% generate random nodes (then for via points)
+%% generate random nodes
 counter = 0;
 while isempty(noderoute)
     nodenum = 1;
@@ -52,6 +52,7 @@ x1=nodez(noderoute,1);
 y1=nodez(noderoute,2);
 plot(x1,y1,'r-');
 hold off
+save('shortestpath.mat','nodez','nodepoly','edgez','noderoute','polyroute');
 
 
 

@@ -1,5 +1,4 @@
 function [noderoute,polyroute] = shortestpath(nodez,nodezinpoly,nodegrid,nodestart,nodegoal)
-import pathplanning.*
 noderoute = astar(nodegrid,nodez,nodestart,nodegoal);
 polynum = length(nodezinpoly);
 ctr = 0; polyroute = [];

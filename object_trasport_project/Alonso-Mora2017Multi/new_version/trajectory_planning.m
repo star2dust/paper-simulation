@@ -54,7 +54,7 @@ for i=1:4
 end
 %% visualize map
 figure; 
-drawregion_2d(nodepoly,obstcell.vert,range);
+draw_region_2d(nodepoly,obstcell.vert,range);
 drawplat3d(nodez,[lcx,lcy,lcz],[lmx,lmy,lmz])
 %% add goal node to graph
 [nodez,nodezinpoly,nodegrid,edgez]=creategraph(nodez,nodepoly,nodezinpoly,edgez,1,config,range,[lcx,lcy,lcz],[lmx,lmy,lmz]);
@@ -69,7 +69,7 @@ while isempty(noderoute)
     [noderoute,polyroute] = shortestpath(nodez,nodezinpoly,nodegrid,1,2);
     counter = counter + 1;
 end
-drawregion_2d(nodepoly(polyroute),[],range);
+draw_region_2d(nodepoly(polyroute),[],range);
 drawplat3d(nodez(noderoute,:),[lcx,lcy,lcz],[lmx,lmy,lmz]);
 hold on
 x1=nodez(noderoute,1);
@@ -94,7 +94,7 @@ xlim([range.lb(1) range.ub(1)]);
 ylim([range.lb(2) range.ub(2)]);
 hold on
 % % obstacles
-% drawregion_2d([],obstcell.vert,range);
+% draw_region_2d([],obstcell.vert,range);
 % fig.obst = patch('Vertices',obst.verticesStates.position','Faces',obst.faces,'FaceColor','g','FaceAlpha',0.5);
 % pause(0.2)
 % % object
@@ -109,7 +109,7 @@ plotopt = {'noname', 'noraise', 'nobase', 'noshadow', 'notiles', 'nowrist', 'noj
 % pause(0.2)
 % % polytope
 % for i=1:length(polyroute)
-%     drawregion_2d(nodepoly(polyroute(i)),[],range);
+%     draw_region_2d(nodepoly(polyroute(i)),[],range);
 %     pause(0.2)
 % end
 % % graph
@@ -127,7 +127,7 @@ plotopt = {'noname', 'noraise', 'nobase', 'noshadow', 'notiles', 'nowrist', 'noj
 % % obstacles
 % cla
 % hold on
-drawregion_2d([],obstcell.vert,range); 
+draw_region_2d([],obstcell.vert,range); 
 for i=1:length(obst)
     fig.obst = patch('Vertices',obst(i).verticesStates.position','Faces',obst(i).faces,'FaceColor','g','FaceAlpha',0.5);
 end
@@ -217,7 +217,7 @@ for i=1:randnum
 %         hold on
 %         plot(randlocation(1),randlocation(2),'go');
 %         plot(randz(1),randz(2),'r*');
-%         drawregion_2d(randpoly,[],range);
+%         draw_region_2d(randpoly,[],range);
 %         drawplat3d(randz);
 %         hold off
         %%%%%
@@ -226,7 +226,6 @@ end
 end
 
 function [nodez, nodepoly, nodezinpoly]= randnode(nodez,nodepoly,nodezinpoly,nodenum,nodeconfig,obstacle,range,lc,lm)
-import iristools.*
 % set nodez to all zero
 znum = size(nodez,1);
 polynum = length(nodepoly);
@@ -253,7 +252,7 @@ while (ctr<=nodenum)
 %                 hold on
 %                 plot(randlocation(1),randlocation(2),'go');
 %                 plot(randz(1),randz(2),'r*');
-%                 drawregion_2d(randpoly,[],range);
+%                 draw_region_2d(randpoly,[],range);
 %                 drawplat3d(randz);
 %                 hold off
                 %%%%%

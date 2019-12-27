@@ -10,7 +10,7 @@
 % Methods:
 % - getStates
 % - updateStates
-classdef Cuboid < handle
+classdef RigidCuboid < handle
     properties (SetAccess = protected)
         % translation & rotation states in world frame (6 dim)
         % angle expressed in Euler angle rotations "ZYX" ( R = Rz(thy)*Ry(thp)*Rx(thr))

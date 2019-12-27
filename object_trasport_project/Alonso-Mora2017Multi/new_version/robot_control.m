@@ -1,14 +1,14 @@
 close all
 clear
 
-load('shortestpath.mat','nodez','nodepoly','edgez','noderoute','polyroute');
+load('shortestpath2.mat','nodez','nodepoly','edgez','noderoute','polyroute');
 %% save data
 % constants
 lcx = 0.6; lcy = 0.6; lcz = 0.2; % size of object
 lmx = 0.8; lmy = 0.4; lmz = 0.3; lm_b = 0.15; % size of platform
 % obstacles
 xo1 = [3.75,4.75,0.5,0,0,0];
-xo2 = [7.25,3,0.5,0,0,0];
+xo2 = [8.25,3,0.5,0,0,0];
 obst(1) = pkgMechanics.RigidCuboid(1,xo1,[1.5,3.5,1]);
 obst(2) = pkgMechanics.RigidCuboid(1,xo2,[1.5,1,1]);
 % range

@@ -1,6 +1,6 @@
 ## Let's Reproduce Paper simulations!
 
-Some paper simulations by matlab for multi-robot systems, distributed optimization and cooperative manipulation.  If you have any interesting papers that are hard to reproduce the simulations, feel free to share with me! 
+Some paper simulations by matlab for multi-robot systems, formation control, distributed optimization and cooperative manipulation.  If you have any interesting papers that are hard to reproduce the simulations, feel free to share with me! 
 
 Here are the list of paper simulations I have reproduced.
 

@@ -3,7 +3,7 @@ function trajectory_planning()
 close all
 clear
 %% requirements
-% given obstacle field O, start configuration z_s with centroid s and destination g for the formation’s centroid.
+% given obstacle field O, start configuration z_s with centroid s and destination g for the formation's centroid.
 import iris.inflate_region.*
 import iris.drawing.*
 import iris.thirdParty.polytopes.*

@@ -9,6 +9,7 @@ Here are the list of paper simulations I have reproduced.
 3. Zhao, S. (2018). Affine Formation Maneuver Control of Multiagent Systems. IEEE Transactions on Automatic Control, 63(12), 4140–4155. https://doi.org/10.1109/TAC.2018.2798805
 4. Ibuki, T., Wilson, S., Yamauchi, J., Fujita, M., & Egerstedt, M. (2020). Optimization-based distributed flocking control for multiple rigid bodies. IEEE Robotics and Automation Letters, 5(2), 1891–1898. https://doi.org/10.1109/LRA.2020.2969950
 5. Kia, S. S., Cortés, J., & Martínez, S. (2015). Distributed convex optimization via continuous-time coordination algorithms with discrete-time communication. In Automatica (Vol. 55, pp. 254–264). Elsevier Ltd. https://doi.org/10.1016/j.automatica.2015.03.001
+6. Sun, S., & Ren, W. (2020). Distributed Continuous-Time Optimization with Time-Varying Objective Functions and Inequality Constraints. Retrieved from http://arxiv.org/abs/2009.02378
 
 ## Requirements
 

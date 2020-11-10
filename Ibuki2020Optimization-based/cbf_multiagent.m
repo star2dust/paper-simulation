@@ -26,6 +26,16 @@ end
 hold off
 % initial control
 uqp_rob = zeros(size(pos_rob));
+% reference distance
+dis_ref = zeros(robot_num);
+for i=1:robot_num-1
+    for j=i:robot_num
+        if any(graph.edge_set(2,graph.edge_set(1,:)==i)==j)
+            dis_ref(i,j) = norm(pos_ref(i,:)-pos_ref(j,:));
+        end
+    end
+end
+dis_ref = dis_ref+dis_ref';
 
 % circular constraint sets
 zbf_circ = @(i,pos_rob) 1-(pos_rob(i,:)-pos_circ(i,:))*(pos_rob(i,:)-pos_circ(i,:))';
@@ -33,9 +43,9 @@ zbf_circ = @(i,pos_rob) 1-(pos_rob(i,:)-pos_circ(i,:))*(pos_rob(i,:)-pos_circ(i,
 knom = 2;
 unom_rob = @(i,pos_rob) -knom*(pos_rob(i,:)-pos_ref(i,:));
 % bounded distance costraints
-ld = 0.3; ud = 0.8;
-zbf_lb = @(i,j,pos_rob) (pos_rob(i,:)-pos_rob(j,:))*(pos_rob(i,:)-pos_rob(j,:))'-ld^2;
-zbf_ub = @(i,j,pos_rob) ud^2-(pos_rob(i,:)-pos_rob(j,:))*(pos_rob(i,:)-pos_rob(j,:))';
+ld = dis_ref-0.2; ud = dis_ref+0.2;
+zbf_lb = @(i,j,pos_rob) (pos_rob(i,:)-pos_rob(j,:))*(pos_rob(i,:)-pos_rob(j,:))'-ld(i,j)^2;
+zbf_ub = @(i,j,pos_rob) ud(i,j)^2-(pos_rob(i,:)-pos_rob(j,:))*(pos_rob(i,:)-pos_rob(j,:))';
 % extended K-class function
 akcf = 1;
 ekcf = @(h) akcf*h;
@@ -47,13 +57,12 @@ cbfb_lb = @(i,j,pos_rob) ekcf(zbf_lb(i,j,pos_rob));
 cbfa_ub = @(i,j,pos_rob) -cbfa_lb(i,j,pos_rob);
 cbfb_ub = @(i,j,pos_rob) ekcf(zbf_ub(i,j,pos_rob));
 % another bounded distance costraints
-ld = 0.3; ud = 0.8; 
-zbf_bd = @(i,j,pos_rob) -((pos_rob(i,:)-pos_rob(j,:))*(pos_rob(i,:)-pos_rob(j,:))'-ld^2)...
-    *((pos_rob(i,:)-pos_rob(j,:))*(pos_rob(i,:)-pos_rob(j,:))'-ud^2);
+zbf_bd = @(i,j,pos_rob) -((pos_rob(i,:)-pos_rob(j,:))*(pos_rob(i,:)-pos_rob(j,:))'-ld(i,j)^2)...
+    *((pos_rob(i,:)-pos_rob(j,:))*(pos_rob(i,:)-pos_rob(j,:))'-ud(i,j)^2);
 % another control barrier function
-cbfa_bd = @(i,j,pos_rob) (2*(pos_rob(i,:)-pos_rob(j,:))*(pos_rob(i,:)-pos_rob(j,:))'-ld^2-ud^2)*(pos_rob(i,:)-pos_rob(j,:));
-cbfb_bd = @(i,j,pos_rob,uqp_rob) ekcf(zbf_bd(i,j,pos_rob))+cbfa_bd(i,j,pos_rob)*uqp_rob(j,:)';
-% cbfb_bd = @(i,j,pos_rob) ekcf(zbf_bd(i,j,pos_rob));
+cbfa_bd = @(i,j,pos_rob) (2*(pos_rob(i,:)-pos_rob(j,:))*(pos_rob(i,:)-pos_rob(j,:))'-ld(i,j)^2-ud(i,j)^2)*(pos_rob(i,:)-pos_rob(j,:));
+% cbfb_bd = @(i,j,pos_rob,uqp_rob) ekcf(zbf_bd(i,j,pos_rob))+cbfa_bd(i,j,pos_rob)*uqp_rob(j,:)';
+cbfb_bd = @(i,j,pos_rob) ekcf(zbf_bd(i,j,pos_rob));
 
 cbf_type = 2;
 pos_data = pos_rob;
@@ -75,8 +84,8 @@ for t=0:dt:T
                 bqp = [bqp;cbfb_ub(i,j,pos_rob)];
             else
                 aqp = [aqp;cbfa_bd(i,j,pos_rob)];
-                bqp = [bqp;cbfb_bd(i,j,pos_rob,uqp_rob)];
-%                 bqp = [bqp;cbfb_bd(i,j,pos_rob)];
+%                 bqp = [bqp;cbfb_bd(i,j,pos_rob,uqp_rob)];
+                bqp = [bqp;cbfb_bd(i,j,pos_rob)];
             end
         end
         [uqp,~,is_solved] = quadprog(eye(2),fqp,aqp,bqp);

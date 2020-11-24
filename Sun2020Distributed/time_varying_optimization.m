@@ -73,7 +73,8 @@ for t=0:dt:T
            (cost_penalty_nabla(i,pos_rob,pos_ref,rho)+cost_penalty_nabla_dot(i,pos_rob,pos_ref,rho));
        hessian_inv = blkdiag(hessian_inv,cost_penalty_hessian(i,pos_rob,pos_ref,rho)^-1);
     end
-    sign_rob = (graph.incidence*sign(graph.incidence'*pos_rob))';
+%     sign_rob = (graph.incidence*sign(graph.incidence'*pos_rob))';
+    sign_rob = (graph.stress*sign(graph.stress*pos_rob))';
     u_rob_tp(:) = -beta*hessian_inv*sign_rob(:)+phi(:);
     u_rob = u_rob_tp';
     % update
@@ -108,3 +109,9 @@ xpos_data = squeeze(pos_data(:,1,:));
 ypos_data = squeeze(pos_data(:,2,:));
 plot3(kron(ones(robot_num,1),t_data)',xpos_data',ypos_data');
 xlabel('time/s');ylabel('x/m');zlabel('y/m');grid
+figure
+plot(kron(ones(robot_num,1),t_data)',xpos_data');
+xlabel('time/s');ylabel('x/m');grid
+figure
+plot(kron(ones(robot_num,1),t_data)',ypos_data');
+xlabel('time/s');ylabel('y/m');grid

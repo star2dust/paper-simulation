@@ -10,6 +10,7 @@ Here are the list of paper simulations I have reproduced.
 4. Ibuki, T., Wilson, S., Yamauchi, J., Fujita, M., & Egerstedt, M. (2020). Optimization-based distributed flocking control for multiple rigid bodies. IEEE Robotics and Automation Letters, 5(2), 1891–1898. https://doi.org/10.1109/LRA.2020.2969950
 5. Kia, S. S., Cortés, J., & Martínez, S. (2015). Distributed convex optimization via continuous-time coordination algorithms with discrete-time communication. In Automatica (Vol. 55, pp. 254–264). Elsevier Ltd. https://doi.org/10.1016/j.automatica.2015.03.001
 6. Sun, S., & Ren, W. (2020). Distributed Continuous-Time Optimization with Time-Varying Objective Functions and Inequality Constraints. Retrieved from http://arxiv.org/abs/2009.02378
+7. G. Antonelli, F. Arrichiello, F. Caccavale, and A. Marino, “A decentralized controller-observer scheme for multi-agent weighted centroid tracking,” IEEE Trans. Automat. Contr., vol. 58, no. 5, pp. 1310–1316, May 2013.
 
 ## Requirements
 

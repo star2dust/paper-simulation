@@ -94,10 +94,6 @@ U2 = U(:,d+2:end);
 z = null(E);
 % check if all(svd(U2'*H'*diag(z)*H*U2)>0), then
 Omega = H'*diag(z)*H;
-Oll = Omega(1:3,1:3);
-Olf = Omega(1:3,4:end);
-Ofl = Omega(4:end,1:3);
-Off = Omega(4:end,4:end);
 
 %% initial position
 x = rand(n,d)*4-2; 
@@ -112,8 +108,9 @@ end
 axis([-2 12 -12 2]);
 
 %% simulation
-dt = 0.01;
+dt = 0.05;
 loop = 0;
+video_on = true;
 for t=tr(1):dt:tr(end)
     loop = loop+1;
     dq = interp1(tr,dqr,t);
@@ -127,14 +124,14 @@ for t=tr(1):dt:tr(end)
     D = H';
     gamma = diag(Omega);
     for i=4:n
-        errsum = [0,0];
+        err_sum = [0,0];
         edge_ind = find(D(i,:)~=0);
         for k=edge_ind
             node_ind = find(D(:,k)~=0);
             j = node_ind(node_ind~=i);
-            errsum = errsum+z(k)*(x(i,:)-x(j,:)-dx(j,:));
+            err_sum = err_sum+z(k)*(x(i,:)-x(j,:)-dx(j,:));
         end
-        dx(i,:) = -1/gamma(i)*errsum;
+        dx(i,:) = -1/gamma(i)*err_sum;
     end
     % first 3 agents are leaders
     dx(1:3,:) = dxr(1:3,:)-alpha*(x(1:3,:)-xr(1:3,:));
@@ -149,7 +146,15 @@ for t=tr(1):dt:tr(end)
     for i=1:n
         set(fig_node(i),'xdata',x(i,1),'ydata',x(i,2));
     end
+    % video
+    if video_on
+        frame(loop) = getframe(gcf);
+    end
     drawnow
+end
+% write video
+if video_on 
+    savevideo('affine_maneuver',frame);
 end
 figure 
 t_data = tr(1):dt:tr(end);

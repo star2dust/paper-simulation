@@ -65,16 +65,17 @@ end
 axis([-2 2 -2 2]);
 
 %% simulation
-dt = 0.01;
+dt = 0.05;
 T = 10;
 loop = 0;
+video_on = true;
 for t=0:dt:T
     loop = loop+1;
     % followers apply control law (11)
-    alpha = 5;
+    alpha = 10;
     dx = -alpha*Omega*x;
     % first 3 agents are leaders
-%     dx(1:3,:) = -(x(1:3,:)-r(1:3,:));
+    dx(1:3,:) = -(x(1:3,:)-r(1:3,:));
     % update states
     x = x+dt*dx;
     pos_data(:,:,loop) = x;
@@ -85,7 +86,15 @@ for t=0:dt:T
     for i=1:n
         set(fig_node(i),'xdata',x(i,1),'ydata',x(i,2));
     end
+    % video
+    if video_on
+        frame(loop) = getframe(gcf);
+    end
     drawnow
+end
+% write video
+if video_on 
+    savevideo('affine_formation',frame);
 end
 figure 
 t_data = 0:dt:T;

@@ -10,10 +10,13 @@ Here are the list of paper simulations I have reproduced.
 4. Ibuki, T., Wilson, S., Yamauchi, J., Fujita, M., & Egerstedt, M. (2020). Optimization-based distributed flocking control for multiple rigid bodies. IEEE Robotics and Automation Letters, 5(2), 1891–1898. https://doi.org/10.1109/LRA.2020.2969950
 5. Kia, S. S., Cortés, J., & Martínez, S. (2015). Distributed convex optimization via continuous-time coordination algorithms with discrete-time communication. In Automatica (Vol. 55, pp. 254–264). Elsevier Ltd. https://doi.org/10.1016/j.automatica.2015.03.001
 6. Sun, S., & Ren, W. (2020). Distributed Continuous-Time Optimization with Time-Varying Objective Functions and Inequality Constraints. Retrieved from http://arxiv.org/abs/2009.02378
-7. G. Antonelli, F. Arrichiello, F. Caccavale, and A. Marino, “A decentralized controller-observer scheme for multi-agent weighted centroid tracking,” IEEE Trans. Automat. Contr., vol. 58, no. 5, pp. 1310–1316, May 2013.
+7. Antonelli, G., Arrichiello, F., Caccavale, F., & Marino, A. (2013). A decentralized controller-observer scheme for multi-agent weighted centroid tracking. IEEE Transactions on Automatic Control, 58(5), 1310–1316. https://doi.org/10.1109/TAC.2012.2220032
+8. Shi, W., Ling, Q., Wu, G., & Yin, W. (2015). Extra: An exact first-order a lgorithm for decentralized consensus optimization. SIAM Journal on Optimization, 25(2), 944–966. https://doi.org/10.1137/14096668X 
+9. Jakovetić, D. (2019). A Unification and Generalization of Exact Distributed First-Order Methods. IEEE Transactions on Signal and Information Processing over Networks, 5(1), 31–46. https://doi.org/10.1109/TSIPN.2018.2846183 
+10. Qu, G., & Li, N. (2018). Harnessing smoothness to accelerate distributed optimization. IEEE Transactions on Control of Network Systems, 5(3), 1245–1260. https://doi.org/10.1109/TCNS.2017.2698261
 
 ## Requirements
 
 1. [MOSEK-MATLAB](https://github.com/star2dust/MOSEK-MATLAB) or [CVX](https://github.com/cvxr/CVX)
-
 2. [Robotics-Toolbox](https://github.com/star2dust/Robotics-Toolbox).
+

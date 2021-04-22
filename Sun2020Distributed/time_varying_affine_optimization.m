@@ -63,7 +63,7 @@ dt = 0.01;
 T = 50;
 loop = 0;
 playspeed = 2;
-video_on = true;
+video_on = false;
 for t=0:dt:T
     loop = loop+1;
     % control

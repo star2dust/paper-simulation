@@ -1,4 +1,5 @@
 function graph = selectTopology(robot_num,vert_ref)
+% Generate undirected graph for at most 8 agents
 
 % topology graph
 graph.incidence =   [-1,-1,-1,-1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0,-1;
@@ -19,15 +20,16 @@ if num_remove>0
 end
 % laplacian
 graph.laplacian = graph.incidence*graph.incidence';
+graph.adjacency = diag(diag(graph.laplacian))-graph.laplacian;
 % edge set
 edge_num = size(graph.incidence,2);
 graph.edge_set = mod(reshape(find(graph.incidence~=0),2,edge_num),robot_num);
 graph.edge_set(graph.edge_set==0) = robot_num;
 % undirected graph
-graph.edge_set = [graph.edge_set,[0,1;1,0]*graph.edge_set];
-[~,sort_ind] = sort(graph.edge_set(1,:));
-graph.edge_set = graph.edge_set(:,sort_ind);
-if nargin>1
+edge_set_sort = [graph.edge_set,[0,1;1,0]*graph.edge_set];
+[~,sort_ind] = sort(edge_set_sort(1,:));
+graph.edge_sort = edge_set_sort(:,sort_ind);
+if nargin>1&&robot_num>4
     % vertex dimension
     vert_dim = size(vert_ref,2);
     % configuration matrix
@@ -62,9 +64,12 @@ if nargin>1
     mat_M = [basis_M{:}]*kron(coef_E,eye(size(basis_M{1},2)));
     % check if all(eig(U2'*H'*diag(z)*H*U2)>0)
     eig_M = eig(mat_M);
-    if all(eig_M(4:end)>0)
-        edge_weight =  null_E*coef_E;
-        graph.stress = mat_H'*diag(edge_weight)*mat_H;
+    if all(eig_M>0)
+        graph.weight_set =  (null_E*coef_E)';
+        edge_weight_sort = [graph.weight_set,graph.weight_set];
+        graph.weight_sort = edge_weight_sort(sort_ind);
+        graph.stress = mat_H'*diag(graph.weight_set)*mat_H;
+        graph.stressnull = mat_P;
         disp('M is positive definite.')
     else
         error('M is not positive definite.')

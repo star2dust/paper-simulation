@@ -14,6 +14,7 @@ Here are the list of paper simulations I have reproduced.
 8. Shi, W., Ling, Q., Wu, G., & Yin, W. (2015). Extra: An exact first-order a lgorithm for decentralized consensus optimization. SIAM Journal on Optimization, 25(2), 944–966. https://doi.org/10.1137/14096668X 
 9. Jakovetić, D. (2019). A Unification and Generalization of Exact Distributed First-Order Methods. IEEE Transactions on Signal and Information Processing over Networks, 5(1), 31–46. https://doi.org/10.1109/TSIPN.2018.2846183 
 10. Qu, G., & Li, N. (2018). Harnessing smoothness to accelerate distributed optimization. IEEE Transactions on Control of Network Systems, 5(3), 1245–1260. https://doi.org/10.1109/TCNS.2017.2698261
+11. Zhang, M., Liu, X., & Liu, J. (2021). Convergence Analysis of a Continuous-Time Distributed Gradient Descent Algorithm. IEEE Control Systems Letters, 5(4), 1339–1344. https://doi.org/10.1109/LCSYS.2020.3037038
 
 ## Requirements
 

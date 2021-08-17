@@ -21,3 +21,6 @@ Here are the list of paper simulations I have reproduced.
 1. [MOSEK-MATLAB](https://github.com/star2dust/MOSEK-MATLAB) or [CVX](https://github.com/cvxr/CVX)
 2. [Robotics-Toolbox](https://github.com/star2dust/Robotics-Toolbox).
 
+## More Tutorials
+
+See my [CSDN blog](https://blog.csdn.net/u010038790) or my [Github Pages](https://star2dust.github.io/). 

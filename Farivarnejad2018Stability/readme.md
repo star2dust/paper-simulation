@@ -1,7 +1,8 @@
 How to use:
 
-- run `digraph_opt.m`  to see the optimization simulation.
+- run `main_Farivarnerjad.m` to see the control simulation.
 
 Requirement:
 
 - [Robotics-Toolbox](https://github.com/star2dust/Robotics-Toolbox).
+

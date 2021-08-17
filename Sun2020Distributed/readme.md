@@ -1,6 +1,6 @@
 How to use:
 
-- run `digraph_opt.m`  to see the optimization simulation.
+- run `time_varying_optimization.m`  to see the optimization simulation.
 
 Requirement:
 
